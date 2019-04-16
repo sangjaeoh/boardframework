@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kitri.admin.board.dao.BoardAdminDao">
+	<select id="getBoardMenu" resultType="boardListDto">
+		select b.bcode, b.bname, b.btype, c.ccode, c.cname,
+		case
+		when b.btype = 5 then 'reboard'
+		when b.btype = 6 then 'album'
+		when b.btype = 7 then 'bbs'
+		else 'board'
+		end control
+		from board_list b, category c
+		where b.ccode = c.ccode
+		order by bcode asc
+	</select>
+</mapper>
+
+
+
+
+

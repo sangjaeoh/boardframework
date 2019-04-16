@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.kitri.board.dao.AlbumDao">
+
+	<select id="listArticle" parameterType="map" resultType="albumDto">
+    select b.seq, b.id, b.name, b.email, b.subject, b.content, b.hit, b.bcode, 
+            a.aseq, a.savefolder, a.orign_picture originalPicture, a.save_picture savePicture, 
+             case  
+                when to_char(logtime, 'yymmdd') = to_char(sysdate, 'yymmdd') 
+                then to_char(logtime, 'hh24:mi:ss') 
+                else to_char(logtime, 'yy.mm.dd') 
+            end logtime 
+    from board b, album a
+    where b.seq = a.seq 
+    and b.bcode = #{bcode} 
+    <if test="word != null and word != ''">
+    	<choose>
+    		<when test="key == 'subject'">
+    		and b.subject like '%'||#{word}||'%'
+    		</when>
+    		<otherwise>
+    		and b.${key} = #{word}
+    		</otherwise>
+    	</choose>
+    </if>
+    order by b.seq desc
+	</select>
+	
+	<insert id="writeArticle" parameterType="albumDto">
+	insert all
+		into board (seq, id, name, email, subject, content, hit, logtime, bcode)
+		values (#{seq}, #{id}, #{name}, #{email}, #{subject}, #{content}, 0, sysdate, #{bcode})
+		into album (aseq, seq, orign_picture, save_picture, savefolder, type)
+		values (album_aseq.nextval, #{seq}, #{originalPicture}, #{savePicture}, #{saveFolder}, 0)
+	select * from dual
+	</insert>
+	
+	<select id="viewArticle" parameterType="albumDto" resultType="albumDto">
+	select b.seq, b.id, b.name, b.subject, b.content, b.hit, b.bcode, b.logtime,
+	a.aseq, a.orign_picture originalPicture, a.savefolder, a.save_picture savePicture, a.type
+	from board b, album a
+	where b.seq = a.seq
+	and b.seq = #{seq}
+	</select>
+	
+</mapper>
+
+
+

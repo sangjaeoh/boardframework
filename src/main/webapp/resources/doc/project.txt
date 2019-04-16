@@ -1,0 +1,98 @@
+project : boardframework (/board)
+  - src
+   
+    - com.kitri.admin.board.controller
+      BoardAdminController.java (/boardadmin)
+    
+    - com.kitri.admin.board.model
+      BoardTypeDto.java
+      CategoryDto.java
+      BoardListDto.java
+    
+    - com.kitri.admin.board.service
+      BoardAdminService.java (I)
+      BoardAdminServiceImpl.java
+    
+    - com.kitri.admin.board.dao
+      BoardAdminDao.java (I)
+ 
+    - com.kitri.board.controller
+      AlbumController.java		(/album)
+      BbsController.java		(/bbs)
+      BoardController.java		(/board)
+      ReboardController.java	(/reboard)
+      MemoController.java		(/memo)
+    
+    - com.kitri.board.model
+      BoardDto.java
+      AlbumDto.java
+      BbsDto.java
+      ReboardDto.java
+      MemoDto.java
+    
+    - com.kitri.board.service
+      AlbumService.java (I)
+      AlbumServiceImpl.java
+      BbsService.java (I)
+      BbsServiceImpl.java
+      BoardService.java (I)
+      BoardServiceImpl.java
+      ReboardService.java (I)
+      ReboardServiceImpl.java
+      MemoService.java (I)
+      MemoServiceImpl.java
+    
+    - com.kitri.board.dao
+      AlbumDao.java (I)
+      BbsDao.java (I)
+      BoardDao.java (I)
+      ReboardDao.java (I)
+      MemoDao.java (I)
+   
+    - com.kitri.common.service
+      CommonService.java (I)
+      CommonServiceImpl.java
+      
+    - com.kitri.common.dao
+      CommonDao.java (I)
+     
+    - com.kitri.util
+      KitriConstance.java
+      ParameterCheck.java
+      PageMove.java
+      PageNavigation.java
+      
+    - com.kitri.config.mybatis
+      Configuration.xml
+      board_admin.xml
+      board.xml
+      reboard.xml
+      album.xml
+      bbs.xml
+      memo.xml
+      common.xml
+     
+  - webContent
+  	- commons (공통)
+  	  - template : top.jsp, main.jsp, bottom.jsp
+  	- admin
+  	  - board
+  	    - boardmenu.jsp (게시판목록 : 왼쪽 메뉴부분)
+  	    - makecategory.jsp
+  	    - makeboard.jsp
+    - album (앨범게시판)
+    - bbs (자료실)
+    - board (일반게시판형식)
+    - reboard (답변게시판)
+  
+    - css : style sheet (*.css)
+    - js : javascript (*.js)
+    - img : jpg, gif, png, ... 
+    - META-INF : context.xml (Connection Polling setting)
+    - WEB-INF
+      - lib : *.jar
+      
+
+      
+      
+      
